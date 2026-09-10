@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استطلاع سريع</title>
+    <style>
+        * { box-sizing: border-box; font-family: system-ui, -apple-system, sans-serif; }
+        body { background-color: #f4f6f8; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; padding: 15px; }
+        .card { background: #ffffff; width: 100%; max-width: 400px; padding: 25px; border-radius: 16px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); text-align: center; }
+        h2 { color: #1e293b; font-size: 20px; margin-bottom: 8px; }
+        p { color: #64748b; font-size: 14px; margin-bottom: 20px; }
+        .btn-option { width: 100%; background: #f1f5f9; border: 2px solid #e2e8f0; padding: 14px; border-radius: 12px; margin-bottom: 10px; font-size: 15px; font-weight: bold; color: #334155; cursor: pointer; transition: all 0.2s; }
+        .btn-option:hover { background: #e2e8f0; }
+        .btn-option.selected { background: #eff6ff; border-color: #2563eb; color: #2563eb; }
+        .btn-submit { width: 100%; background: #2563eb; color: white; border: none; padding: 16px; border-radius: 12px; font-size: 16px; font-weight: bold; margin-top: 15px; cursor: pointer; display: none; box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
+        .btn-submit:hover { background: #1d4ed8; }
+        .progress-bar { height: 6px; background: #e2e8f0; border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+        .progress { height: 100%; width: 50%; background: #2563eb; transition: width 0.3s; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="progress-bar"><div class="progress" id="progress"></div></div>
+    
+    <!-- Step 1 -->
+    <div id="step1">
+        <h2>ما هو نظام تشغيل هاتفك؟</h2>
+        <p>اختر إجابة للانتقال للخطوة التالية</p>
+        <button class="btn-option" onclick="nextStep(1)">📱 أندرويد (Android)</button>
+        <button class="btn-option" onclick="nextStep(1)">🍎 آيفون (iOS)</button>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="step2" style="display: none;">
+        <h2>ما هي مكافأتك المفضلة؟</h2>
+        <p>اضغط للانتهاء والحصول على النتيجة</p>
+        <button class="btn-option" onclick="selectFinal(this)">🎁 بطاقات هدايا وتطبيقات</button>
+        <button class="btn-option" onclick="selectFinal(this)">⚡ رصيد وأكواد فورية</button>
+        
+        <a id="redirectBtn" href="Https://www.directcpi.com/view.php?id=5546832&pub=3360575" style="text-decoration: none;">
+            <button class="btn-submit" id="submitBtn">عرض النتيجة واستلام المكافأة 👈</button>
+        </a>
+    </div>
+</div>
+
+<script>
+    function nextStep(step) {
+        if(step === 1) {
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            document.getElementById('progress').style.width = '100%';
+        }
+    }
+
+    function selectFinal(element) {
+        let options = document.querySelectorAll('#step2 .btn-option');
+        options.forEach(opt => opt.classList.remove('selected'));
+        element.classList.add('selected');
+        document.getElementById('submitBtn').style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
